@@ -3,6 +3,7 @@
 `SRProximityRecord` is a small class and delegate to record video (or audio) by covering the proximity sensor. It's based on the idea used by [Beme](http://beme.com).
 
 [Read more on my Blog](http://stephenradford.me/replicating-bemes-record-with-the-proximity-sensor/)
+[View example project](https://github.com/steve228uk/SRProximityRecord-Example)
 
 ## Requirements
 
