@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "28C853601B71F2DB00C93AA3"
+               BuildableName = "SRProximityRecord.app"
+               BlueprintName = "SRProximityRecord"
+               ReferencedContainer = "container:SRProximityRecord.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -12,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "28C853771B71F2DB00C93AA3"
+               BuildableName = "SRProximityRecordTests.xctest"
+               BlueprintName = "SRProximityRecordTests"
+               ReferencedContainer = "container:SRProximityRecord.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "28C853821B71F2DB00C93AA3"
+               BuildableName = "SRProximityRecordUITests.xctest"
+               BlueprintName = "SRProximityRecordUITests"
+               ReferencedContainer = "container:SRProximityRecord.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "28C853601B71F2DB00C93AA3"
+            BuildableName = "SRProximityRecord.app"
+            BlueprintName = "SRProximityRecord"
+            ReferencedContainer = "container:SRProximityRecord.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -26,6 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "28C853601B71F2DB00C93AA3"
+            BuildableName = "SRProximityRecord.app"
+            BlueprintName = "SRProximityRecord"
+            ReferencedContainer = "container:SRProximityRecord.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "28C853601B71F2DB00C93AA3"
+            BuildableName = "SRProximityRecord.app"
+            BlueprintName = "SRProximityRecord"
+            ReferencedContainer = "container:SRProximityRecord.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

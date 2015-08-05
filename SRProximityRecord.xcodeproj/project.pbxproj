@@ -15,6 +15,8 @@
 		28C853721B71F2DB00C93AA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28C853701B71F2DB00C93AA3 /* LaunchScreen.storyboard */; };
 		28C8537D1B71F2DB00C93AA3 /* SRProximityRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C8537C1B71F2DB00C93AA3 /* SRProximityRecordTests.swift */; };
 		28C853881B71F2DB00C93AA3 /* SRProximityRecordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C853871B71F2DB00C93AA3 /* SRProximityRecordUITests.swift */; };
+		28C853961B71F30300C93AA3 /* SRProximityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C853951B71F30300C93AA3 /* SRProximityRecord.swift */; };
+		28C853981B71F52100C93AA3 /* SRProximityRecordDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C853971B71F52100C93AA3 /* SRProximityRecordDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		28C853831B71F2DB00C93AA3 /* SRProximityRecordUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SRProximityRecordUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28C853871B71F2DB00C93AA3 /* SRProximityRecordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRProximityRecordUITests.swift; sourceTree = "<group>"; };
 		28C853891B71F2DB00C93AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28C853951B71F30300C93AA3 /* SRProximityRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRProximityRecord.swift; sourceTree = "<group>"; };
+		28C853971B71F52100C93AA3 /* SRProximityRecordDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRProximityRecordDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				28C853701B71F2DB00C93AA3 /* LaunchScreen.storyboard */,
 				28C853731B71F2DB00C93AA3 /* Info.plist */,
 				28C8536B1B71F2DB00C93AA3 /* SRProximityRecord.xcdatamodeld */,
+				28C853951B71F30300C93AA3 /* SRProximityRecord.swift */,
+				28C853971B71F52100C93AA3 /* SRProximityRecordDelegate.swift */,
 			);
 			path = SRProximityRecord;
 			sourceTree = "<group>";
@@ -195,6 +201,7 @@
 				TargetAttributes = {
 					28C853601B71F2DB00C93AA3 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = MUQ4F4AJ2E;
 					};
 					28C853771B71F2DB00C93AA3 = {
 						CreatedOnToolsVersion = 7.0;
@@ -260,7 +267,9 @@
 			files = (
 				28C853671B71F2DB00C93AA3 /* ViewController.swift in Sources */,
 				28C8536D1B71F2DB00C93AA3 /* SRProximityRecord.xcdatamodeld in Sources */,
+				28C853981B71F52100C93AA3 /* SRProximityRecordDelegate.swift in Sources */,
 				28C853651B71F2DB00C93AA3 /* AppDelegate.swift in Sources */,
+				28C853961B71F30300C93AA3 /* SRProximityRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SRProximityRecord/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.SRProximityRecord;
@@ -411,6 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SRProximityRecord/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.SRProximityRecord;
