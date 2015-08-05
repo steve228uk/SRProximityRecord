@@ -6,6 +6,8 @@
 
 [View example project](https://github.com/steve228uk/SRProximityRecord-Example)
 
+> Used `SRProximityRecord` in a project? Let me know [@steve228uk](http://twitter.com/steve228uk)
+
 ## Requirements
 
 Swift 2.0 — Currently this requires the latest Xcode Beta. It could probably be converted down to 1.2 very easily.
