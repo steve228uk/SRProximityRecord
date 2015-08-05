@@ -29,8 +29,8 @@ Property                      | Type   | Description
 `audioDevice` | `AVCaptureDevice` | Reference to the microphone or nil if the device used doesn't have a microphone.
 `captureOutput` | `AVCaptureOutput` | The output type. This can be video, image or audio. By default it's `AVCaptureMovieFileOutput`
 `outputPath` | `String` | Path to where the output file will be recorded.
-`autoSave | `Bool` | If you want to automatically save the temporary file to the camera roll. Default is true.
-`delegate | `SRProximityRecordDelegate` | Optional delegate
+`autoSave` | `Bool` | If you want to automatically save the temporary file to the camera roll. Default is true.
+`delegate` | `SRProximityRecordDelegate` | Optional delegate
 `sharedInstance` | `SRProximityRecord` | Static reference to an instance of the class
 
 ## `SRProximityRecordDelegate`
