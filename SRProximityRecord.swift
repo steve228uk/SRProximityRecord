@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Photos
 
 public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
 
@@ -47,10 +48,72 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
     /// Auto save the video?
     public var autoSave = true
 
+    /// Reference to the video input
+    private var videoInput: AVCaptureDeviceInput?
+
+    /// Reference to the audio input
+    private var audioInput: AVCaptureDeviceInput?
+
     public override init() {
         super.init()
         setupProximitySensor()
         setupCaptureSession()
+    }
+
+    // MARK: - Permissions
+
+    /// Request permissions for camera, microphone and photo library if we need to
+    public func requestPermissions() {
+        checkCameraPermission()
+        checkMicrophonePermission()
+        if autoSave {
+            checkPhotoLibraryPermission()
+        }
+    }
+
+    /// Check we have access to the camera and if not, request it
+    private func checkPhotoLibraryPermission() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        print(status)
+        switch status {
+            case .NotDetermined, .Restricted:
+                PHPhotoLibrary.requestAuthorization({ (status) -> Void in
+                    self.delegate?.photoPermissionChanged?(status: status)
+                })
+            default:
+                self.delegate?.photoPermissionChanged?(status: status)
+        }
+    }
+
+    /// Check we have access to the camera and if not, request it
+    private func checkCameraPermission() {
+        let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        switch status {
+            case .Restricted:
+                AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (granted) -> Void in
+                    if granted {
+                        self.delegate?.cameraPermissionChanged?(status: .Authorized)
+                    }
+                })
+            default:
+                self.delegate?.cameraPermissionChanged?(status: status)
+        }
+    }
+
+    /// Check we have access to the microphone and if not, request it
+    private func checkMicrophonePermission() {
+        let status = AVAudioSession.sharedInstance().recordPermission()
+
+        switch status {
+            case AVAudioSessionRecordPermission.Denied:
+                AVAudioSession.sharedInstance().requestRecordPermission({ (granted) -> Void in
+                    if granted {
+                        self.delegate?.audioPermissionChanged?(status: .Granted)
+                    }
+                })
+            default:
+                self.delegate?.audioPermissionChanged?(status: status)
+        }
     }
 
     // MARK: - Proximity Sensor
@@ -66,7 +129,7 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
     public func proximityChanged(sender: UIDevice) {
 
         let state = device.proximityState
-        delegate?.proximityChanged?(state)
+        delegate?.proximityChanged?(sensorEnabled: state)
 
         if startRecordingAutomatically && state {
             startRecording()
@@ -81,23 +144,22 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
 
     /// Start recording. This will automatically happen if `startRecordingAutomatically` is set to true
     public func startRecording() {
-        if captureDevice != nil {
-
+        if videoInput != nil && audioInput != nil {
             captureSession.startRunning()
             captureOutput.startRecordingToOutputFileURL(NSURL(fileURLWithPath: outputPath), recordingDelegate: self)
 
         } else {
-            print("ERROR: Device does not have back camera")
+            print("ERROR: Could not start recording")
         }
     }
 
     /// Stop recording. This will automatically happen if `startRecordingAutomatically` is set to true
     public func stopRecording() {
-        if captureDevice != nil {
+        if videoInput != nil && audioInput != nil {
             captureSession.stopRunning()
             captureOutput.stopRecording()
         } else {
-            print("ERROR: Device does not have back camera")
+            print("ERROR: Could not stop recording")
         }
     }
 
@@ -128,20 +190,16 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
         captureSession.beginConfiguration()
         captureSession.addOutput(captureOutput)
 
-        let deviceInput: AVCaptureDeviceInput?
-
         do {
-            deviceInput = try AVCaptureDeviceInput(device: captureDevice!)
+            videoInput = try AVCaptureDeviceInput(device: captureDevice!)
         } catch {
-            deviceInput = nil
+            videoInput = nil
             print("ERROR: Creating deviceInput")
         }
 
-        if deviceInput != nil {
-            captureSession.addInput(deviceInput)
+        if videoInput != nil {
+            captureSession.addInput(videoInput)
         }
-
-        let audioInput: AVCaptureDeviceInput?
 
         do {
             audioInput = try AVCaptureDeviceInput(device: audioDevice!)

@@ -34,11 +34,24 @@ Using SRProximityRecord is easy and you only need to call the shared instance on
 
 ````swift
 let SRP = SRProximityRecord.sharedInstance
+SRP.requestPermissions()
 SRP.delegate = self
 ````
+Requesting permissions will request access to camera, microphone and photo library.
+
 Setting the delegate will allow you to use the methods outlined below.
 
 > If you're using CocoaPods, make sure your import the module into your classes using `import SRProximityRecord`
+
+## methods
+
+There are a few public methods that you can use.
+
+Method | Description
+-------|------------
+`requestPermissions()` | Request permissions for camera, microphone and photo library if we need to
+`startRecording()` | Start recording audio/video
+`stopRecording()` | Stop recording audio/video
 
 ## Properties
 
@@ -61,6 +74,7 @@ The delegate bundled with SRProximityRecord has 3 (optional) methods that are ca
 
 Method                  | Description
 ------------------------|---------------------------
-proximityChanged:_      | Called when the proximity state of the device has changed. The `proximityState` is passed to the delegate method as a `Bool`
-recordingStarted:       | Called when the recording has started
-recordingStopped:       | Called when the recording has stopped
+`proximityChanged(sensorEnabled:)` | Called when the proximity state of the device has changed. The `proximityState` is passed to the delegate method as a `Bool`
+`recordingStarted()` | Called when the recording has started
+`recordingStopped()` | Called when the recording has stopped
+`photoPermissionChanged(status:)` | Called when the photo permission has changed
