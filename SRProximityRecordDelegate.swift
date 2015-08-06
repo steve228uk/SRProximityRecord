@@ -9,14 +9,14 @@
 import Foundation
 
 @objc public protocol SRProximityRecordDelegate {
-    
+
     /// Called when the proximity state of the device has changed
     optional func proximityChanged(sensorEnabled: Bool)
-    
+
     /// Called when the recording has started
     optional func recordingStarted()
-    
+
     /// Called when the recording has stopped
     optional func recordingStopped()
-    
+
 }

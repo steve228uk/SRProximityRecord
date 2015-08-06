@@ -12,42 +12,42 @@ import AVFoundation
 public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
 
     /// The default notification center
-    let notificationCenter = NSNotificationCenter.defaultCenter()
+    private let notificationCenter = NSNotificationCenter.defaultCenter()
 
     /// Shared instance of the proximity recorder
     public static let sharedInstance = SRProximityRecord()
 
     /// The current device
-    let device = UIDevice.currentDevice()
+    private let device = UIDevice.currentDevice()
 
     /// The delegate where we can fire off our notifications
-    var delegate: SRProximityRecordDelegate?
+    public var delegate: SRProximityRecordDelegate?
 
     /// Whether recording should be started automatically. Set this to false if you want to handle it yourself using the `proximityChanged` method on the `SRProximityRecordDelegate`
-    var startRecordingAutomatically: Bool = true
+    public var startRecordingAutomatically: Bool = true
 
     /// The capture session that we'll use to record video
-    let captureSession = AVCaptureSession()
+    public let captureSession = AVCaptureSession()
 
     /// We'll store the back camera here if the device we're using has one
-    var captureDevice: AVCaptureDevice?
+    public var captureDevice: AVCaptureDevice?
 
     /// We'll store the microphone here
-    var audioDevice: AVCaptureDevice?
+    public var audioDevice: AVCaptureDevice?
 
     /// The capture session preset we're going to use to record audio and video. By default this is set to High Quality but change it if you need to record in a different format
-    var captureSessionPreset = AVCaptureSessionPresetHigh
+    public var captureSessionPreset = AVCaptureSessionPresetHigh
 
     /// Output of the file we'll be capturing
-    var captureOutput = AVCaptureMovieFileOutput()
+    public var captureOutput = AVCaptureMovieFileOutput()
 
     /// Path to the output file
-    var outputPath = "\(NSTemporaryDirectory())/proximity.mov"
+    public var outputPath = "\(NSTemporaryDirectory())/proximity.mov"
 
     /// Auto save the video?
-    var autoSave = true
+    public var autoSave = true
 
-    override init() {
+    public override init() {
         super.init()
         setupProximitySensor()
         setupCaptureSession()
@@ -57,13 +57,13 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
 
     /// ### Setup the proximity sensor
     /// Enables the current device to start sensing and configures an observer to monitor changes
-    func setupProximitySensor() {
+    private func setupProximitySensor() {
         device.proximityMonitoringEnabled = true
         notificationCenter.addObserver(self, selector: "proximityChanged:", name: UIDeviceProximityStateDidChangeNotification, object: device)
     }
 
     /// Proximity state has changed
-    func proximityChanged(sender: UIDevice) {
+    private func proximityChanged(sender: UIDevice) {
 
         let state = device.proximityState
         delegate?.proximityChanged?(state)
@@ -80,7 +80,7 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
     // MARK: - Recording
 
     /// Start recording. This will automatically happen if `startRecordingAutomatically` is set to true
-    func startRecording() {
+    public func startRecording() {
         if captureDevice != nil {
 
             captureSession.startRunning()
@@ -92,7 +92,7 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
     }
 
     /// Stop recording. This will automatically happen if `startRecordingAutomatically` is set to true
-    func stopRecording() {
+    public func stopRecording() {
         if captureDevice != nil {
             captureSession.stopRunning()
             captureOutput.stopRecording()
@@ -105,7 +105,7 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
     // MARK: - Capture Session
 
     /// Setup our capture session
-    func setupCaptureSession() {
+    private func setupCaptureSession() {
         captureSession.sessionPreset = captureSessionPreset
 
         let devices = AVCaptureDevice.devices()
@@ -124,7 +124,7 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
     }
 
     /// Configure the capture session to add our input and output
-    func configureCaptureSession() {
+    private func configureCaptureSession() {
         captureSession.beginConfiguration()
         captureSession.addOutput(captureOutput)
 
@@ -159,14 +159,14 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
 
     // MARK: - AVCaptureFileRecordingDelegate
 
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+    public func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
         delegate?.recordingStopped?()
         if autoSave {
             UISaveVideoAtPathToSavedPhotosAlbum(outputPath, self, nil, nil)
         }
     }
 
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!) {
+    public func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!) {
         delegate?.recordingStarted?()
     }
 
