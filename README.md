@@ -12,6 +12,22 @@
 
 Swift 2.0 — Currently this requires the latest Xcode Beta. It could probably be converted down to 1.2 very easily.
 
+## Installation
+
+Installation can be done via CocoaPods or manually.
+
+### CocoaPods
+
+Make sure your project is set to use frameworks by adding `use_frameworks!` to your Podfile. Then, include the following to install SRProximityRecord to your target.
+
+`pod 'SRProximityRecord'`
+
+### Manually
+
+Clone the repo into your project and manually assign the Target Membership to your target
+
+![Target Membership](http://sht.tl/V6Hn4f)
+
 ## Usage
 
 Using SRProximityRecord is easy and you only need to call the shared instance once to get it all working.
@@ -21,6 +37,8 @@ let SRP = SRProximityRecord.sharedInstance
 SRP.delegate = self
 ````
 Setting the delegate will allow you to use the methods outlined below.
+
+> If you're using CocoaPods, make sure your import the module into your classes using `import SRProximityRecord`
 
 ## Properties
 
