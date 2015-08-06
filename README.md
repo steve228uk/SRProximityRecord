@@ -43,7 +43,7 @@ Setting the delegate will allow you to use the methods outlined below.
 
 > If you're using CocoaPods, make sure your import the module into your classes using `import SRProximityRecord`
 
-## methods
+## Methods
 
 There are a few public methods that you can use.
 
