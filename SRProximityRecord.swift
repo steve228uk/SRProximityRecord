@@ -63,7 +63,7 @@ public class SRProximityRecord: NSObject, AVCaptureFileOutputRecordingDelegate {
     }
 
     /// Proximity state has changed
-    private func proximityChanged(sender: UIDevice) {
+    public func proximityChanged(sender: UIDevice) {
 
         let state = device.proximityState
         delegate?.proximityChanged?(state)
