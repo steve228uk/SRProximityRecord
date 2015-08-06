@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   s.author             = { "Stephen Radford" => "steve228uk@gmail.com" }
   # Or just: s.author    = "Stephen Radford"
   # s.authors            = { "Stephen Radford" => "steve228uk@gmail.com" }
-  s.social_media_url   = "http://twitter.com/steve228uk"
+  # s.social_media_url   = "http://twitter.com/Stephen Radford"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -62,7 +62,13 @@ Pod::Spec.new do |s|
   #
 
   s.platform     = :ios
-  s.platform     = :ios, "8.0"
+  # s.platform     = :ios, "5.0"
+
+  #  When using multiple platforms
+  # s.ios.deployment_target = "5.0"
+  # s.osx.deployment_target = "10.7"
+  # s.watchos.deployment_target = "2.0"
+
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -70,7 +76,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/steve228uk/SRProximityRecord.git", :commit => "98ab3648a0bc62e403c4008e23b40ebedfea5a06" }
+  s.source       = { :git => "https://github.com/steve228uk/SRProximityRecord.git", :tag => "0.0.2" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -81,7 +87,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "/",
+  s.source_files  = "./**/*"
   # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
