@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc protocol SRProximityRecordDelegate {
+@objc public protocol SRProximityRecordDelegate {
     
     /// Called when the proximity state of the device has changed
     optional func proximityChanged(sensorEnabled: Bool)
